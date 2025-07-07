@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Forum SATRIA</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        /* Custom styles */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0d1117;
+            color: #e6edf3;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .interactive-card:hover .glass-card, .interactive-card-solo:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0 25px rgba(239, 68, 68, 0.1);
+        }
+
+        .text-gradient-red {
+            background: linear-gradient(90deg, #f87171, #ef4444);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* PERUBAIKAN BARU: Liquid Blob Background */
+        #background-wrapper {
+            position: relative;
+            isolation: isolate;
+            overflow-x: hidden;
+        }
+
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(239, 68, 68, 0.4) 0%, rgba(239, 68, 68, 0) 70%);
+            filter: blur(100px);
+            z-index: -2;
+            animation: move-blob 30s infinite alternate;
+        }
+        .blob-1 { width: 400px; height: 400px; top: -150px; left: -150px; animation-duration: 40s; }
+        .blob-2 { width: 500px; height: 500px; bottom: -200px; right: -200px; animation-duration: 35s; animation-delay: -10s; }
+        .blob-3 { width: 300px; height: 300px; top: 50%; left: 50%; animation-duration: 25s; animation-delay: -5s; }
+        
+        @keyframes move-blob {
+            0% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(100px, -50px) scale(1.2); }
+            100% { transform: translate(-100px, 50px) scale(0.8); }
+        }
+
+
+        /* Parallax Scroll Effect */
+        #home { height: 100vh; position: sticky; top: 0; z-index: 1; }
+        #main-content { position: relative; z-index: 2; background-color: transparent; }
+        .content-section { background-color: #0d1117; }
+
+        /* Animations */
+        @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-slide-up { animation: slideUp 0.8s ease-out forwards; opacity: 0; }
+        .animation-delay-200 { animation-delay: 0.2s; }
+        .animation-delay-400 { animation-delay: 0.4s; }
+
+        .scroll-animate { opacity: 0; transition: opacity 1s ease-out, transform 1s ease-out; }
+        .scroll-animate.slide-in-from-left { transform: translateX(-50px); }
+        .scroll-animate.slide-in-from-right { transform: translateX(50px); }
+        .scroll-animate.is-visible { opacity: 1; transform: translateX(0); }
+
+        .scroll-animate-stagger { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+        .scroll-animate-stagger.is-visible { opacity: 1; transform: translateY(0); }
+        
+        .title-glow { transition: text-shadow 0.3s ease-in-out; }
+        .title-glow:hover { text-shadow: 0 0 25px rgba(239, 68, 68, 0.5); }
+
+        #particle-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: -1; opacity: 0.75; }
+        @keyframes move-particles { from { transform: translateY(0); } to { transform: translateY(-100vh); } }
+        .particle { position: absolute; width: 2px; height: 2px; background: #fff; border-radius: 50%; animation: move-particles 50s linear infinite; }
+
+        .modal { transition: opacity 0.3s ease; }
+        .modal-content { transition: transform 0.3s ease; }
+        
+        /* Thank You Screen Animation */
+        .thank-you-card { animation: slideUp 0.8s ease-out forwards; opacity: 0; }
+        .checkmark__circle { stroke-dasharray: 166; stroke-dashoffset: 166; stroke-width: 2; stroke-miterlimit: 10; stroke: #7ac142; fill: none; animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards; }
+        .checkmark { width: 56px; height: 56px; border-radius: 50%; display: block; stroke-width: 2; stroke: #fff; stroke-miterlimit: 10; margin: 10% auto; box-shadow: inset 0px 0px 0px #7ac142; animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both; }
+        .checkmark__check { transform-origin: 50% 50%; stroke-dasharray: 48; stroke-dashoffset: 48; animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards; }
+        @keyframes stroke { 100% { stroke-dashoffset: 0; } }
+        @keyframes scale { 0%, 100% { transform: none; } 50% { transform: scale3d(1.1, 1.1, 1); } }
+        @keyframes fill { 100% { box-shadow: inset 0px 0px 0px 30px #7ac142; } }
+
+    </style>
+</head>
+<body>
+
+<div id="background-wrapper">
+    <div class="blob-container"><div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div></div>
+    <div id="particle-container"></div>
+
+    <header class="bg-black/50 backdrop-blur-lg sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="flex items-center" aria-label="AI Forum SATRIA Home"><svg class="h-10 w-auto" viewBox="0 0 140 40" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_105_2)"><g style="transform: scale(0.4) translateX(10px) translateY(10px);"><rect x="24.4" y="58.8" width="40" height="12.8" rx="6.4" transform="rotate(-60 24.4 58.8)" fill="white"/><circle cx="58" cy="74.4" r="6.4" fill="#ef4444"/><rect x="52.4" y="32.8" width="40" height="12.8" rx="6.4" transform="rotate(60 52.4 32.8)" fill="white"/><circle cx="21.2" cy="30.4" r="6.4" fill="#ef4444"/><rect x="28" y="52" width="40" height="12.8" rx="6.4" fill="white"/><circle cx="68" cy="52" r="6.4" fill="#ef4444"/><rect x="90" y="24" width="12.8" height="40" rx="6.4" fill="white"/><circle cx="96.4" y="14.8" r="6.4" fill="white"/><path d="M90 64C90 60.6863 92.6863 58 96 58C99.3137 58 102 60.6863 102 64C102 70.3137 96.4 78 96.4 78C96.4 78 90 70.3137 90 64Z" fill="#ef4444"/></g></g></svg></a>
+            <nav class="hidden md:flex items-center space-x-8"><a href="#about" class="text-gray-300 hover:text-white transition-colors">Why SATRIA?</a><a href="#members" class="text-gray-300 hover:text-white transition-colors">Members</a><a href="#join-us" class="text-gray-300 hover:text-white transition-colors">Apply</a></nav>
+            <a href="#join-us" class="hidden md:block bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-5 rounded-full transition-colors">Join Forum</a>
+        </div>
+    </header>
+
+    <section id="home" class="flex items-center justify-center text-center overflow-hidden">
+        <div id="hero-content" class="container mx-auto px-6 relative z-10"><h1 class="text-7xl md:text-9xl lg:text-[12rem] font-black text-white uppercase tracking-tighter leading-none animate-slide-up">SATRIA</h1><p class="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto animate-slide-up animation-delay-200">Synergy of AI, Technology, Research, Innovation, and Art</p></div>
+    </section>
+
+    <div id="main-content">
+        <section id="about" class="py-20 md:py-28 content-section">
+            <div class="container mx-auto px-6"><div class="max-w-6xl mx-auto grid md:grid-cols-12 gap-8"><div class="md:col-span-4 lg:col-span-5 flex flex-col justify-around items-center md:items-start relative scroll-animate slide-in-from-left"><h2 class="text-6xl md:text-8xl font-black title-glow text-gradient-red">VISI</h2><h2 class="text-6xl md:text-8xl font-black title-glow text-gradient-red">MISI</h2></div><div class="md:col-span-8 lg:col-span-7 space-y-8"><button class="w-full text-left interactive-card-solo scroll-animate slide-in-from-right" data-name="Visi" data-bio="Mendorong terciptanya ekosistem untuk mewujudkan kedaulatan dan pertumbuhan ekonomi digital yang didukung oleh inovasi AI dan teknologi kreatif."><div class="glass-card p-8 rounded-2xl h-full"><p class="text-gray-300 text-xl md:text-2xl leading-relaxed">Mendorong terciptanya ekosistem untuk mewujudkan kedaulatan dan pertumbuhan ekonomi digital yang didukung oleh inovasi AI dan teknologi kreatif.</p></div></button><button class="w-full text-left interactive-card-solo scroll-animate slide-in-from-right" style="transition-delay: 0.2s;" data-name="Misi" data-bio="1. Mendorong pemahaman dan implementasi kedaulatan digital di seluruh lapisan masyarakat.<br>2. Mengembangkan ekosistem ekonomi digital yang inklusif dan berkelanjutan.<br>3. Memajukan pemanfaatan AI dan teknologi kreatif untuk kemajuan bangsa."><div class="glass-card p-8 rounded-2xl h-full"><ol class="list-none space-y-4"><li class="flex items-start"><span class="text-red-500 font-bold mr-4">1.</span><span class="text-gray-300 text-lg">Mendorong pemahaman dan implementasi kedaulatan digital di seluruh lapisan masyarakat.</span></li><li class="flex items-start"><span class="text-red-500 font-bold mr-4">2.</span><span class="text-gray-300 text-lg">Mengembangkan ekosistem ekonomi digital yang inklusif dan berkelanjutan.</span></li><li class="flex items-start"><span class="text-red-500 font-bold mr-4">3.</span><span class="text-gray-300 text-lg">Memajukan pemanfaatan AI dan teknologi kreatif untuk kemajuan bangsa.</span></li></ol></div></button></div></div></div>
+        </section>
+
+        <section id="advantage" class="py-20 md:py-24 content-section">
+             <div class="container mx-auto px-6">
+                <div class="text-center mb-16"><h2 class="text-4xl md:text-5xl font-bold text-white">The SATRIA Advantage</h2><p class="text-gray-400 mt-2 text-lg">More than a forum. It's a strategic circle.</p></div>
+                <div class="max-w-5xl mx-auto grid md:grid-cols-3 gap-8">
+                    <button class="w-full text-left interactive-card-solo scroll-animate slide-in-from-left" data-name="Direct Networking" data-bio="Engage directly with C-levels, founders, and policymakers in closed-door sessions designed to foster meaningful collaboration and create high-value opportunities."><div class="glass-card h-full p-8 rounded-2xl text-center"><div class="flex justify-center mb-4"><svg class="w-12 h-12 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg></div><h3 class="text-xl font-bold text-white mb-2">Direct Networking</h3><p class="text-gray-400">Engage directly with C-levels, founders, and policymakers...</p></div></button>
+                    <button class="w-full text-left interactive-card-solo scroll-animate slide-in-from-left" style="animation-delay: 0.2s;" data-name="Exclusive Knowledge" data-bio="Access proprietary research, deep-dive workshops, and confidential discussions on emerging AI trends that are unavailable to the public, keeping you ahead of the curve."><div class="glass-card h-full p-8 rounded-2xl text-center"><div class="flex justify-center mb-4"><svg class="w-12 h-12 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg></div><h3 class="text-xl font-bold text-white mb-2">Exclusive Knowledge</h3><p class="text-gray-400">Access proprietary research, workshops, and discussions...</p></div></button>
+                    <button class="w-full text-left interactive-card-solo scroll-animate slide-in-from-left" style="animation-delay: 0.4s;" data-name="Collaborative Projects" data-bio="Get involved in high-impact, strategic national projects that not only advance your portfolio but also actively shape the future of Indonesia's digital and AI ecosystem."><div class="glass-card h-full p-8 rounded-2xl text-center"><div class="flex justify-center mb-4"><svg class="w-12 h-12 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg></div><h3 class="text-xl font-bold text-white mb-2">Collaborative Projects</h3><p class="text-gray-400">Get involved in strategic national projects that shape Indonesia's AI future.</p></div></button>
+                </div>
+            </div>
+        </section>
+
+        <section id="members" class="py-20 md:py-24 bg-black/20 content-section">
+             <div class="container mx-auto px-6 relative z-10">
+                <div class="text-center mb-16"><h2 class="text-4xl md:text-5xl font-bold text-white">Our Members</h2><p class="text-gray-400 mt-2 text-lg">The minds behind SATRIA.</p></div>
+                <div id="member-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-x-6 gap-y-12">
+                    <button class="text-center scroll-animate-stagger interactive-card-member" data-name="Wishnutama Kusubandio" data-title="Advisor & Initiator Forum SATRIA" data-bio="Former Minister of Tourism and Creative Economy, a visionary leader bridging creative industries with technology." data-img="https://placehold.co/400x400/e2e8f0/1e293b?text=WK" data-linkedin="https://linkedin.com"><img src="https://placehold.co/200x200/e2e8f0/1e293b?text=WK" alt="Wishnutama Kusubandio" class="w-40 h-40 mx-auto rounded-full object-cover border-4 border-white/10 shadow-lg mb-4"><h4 class="text-xl font-bold text-white">Wishnutama Kusubandio</h4><p class="text-gray-400 text-sm">Advisor & Initiator</p></button>
+                    <button class="text-center scroll-animate-stagger interactive-card-member" data-name="Dr. Prabu Revolusi, S.T, M.I.K" data-title="Advisor & Initiator Forum SATRIA" data-bio="A seasoned journalist and communication expert, advocating for ethical and impactful technology adoption in media." data-img="https://placehold.co/400x400/e2e8f0/1e293b?text=PR" data-linkedin="https://linkedin.com"><img src="https://placehold.co/200x200/e2e8f0/1e293b?text=PR" alt="Dr. Prabu Revolusi" class="w-40 h-40 mx-auto rounded-full object-cover border-4 border-white/10 shadow-lg mb-4"><h4 class="text-xl font-bold text-white">Dr. Prabu Revolusi</h4><p class="text-gray-400 text-sm">Advisor & Initiator</p></button>
+                    <button class="text-center scroll-animate-stagger interactive-card-member" data-name="Ir. Dito Eka Cahya, S.T., Ph.D" data-title="National AI Orchestrator in Edu, Industry, & Policy | Head of AIoT & Robotics Lab BRIN | CTO of Dolan, Kaabaverse, Artiesgroup.ai" data-bio="Leading Indonesia's AI orchestration across education and industry as the Head of AIoT & Robotics Lab at BRIN." data-img="https://placehold.co/400x400/e2e8f0/1e293b?text=DC" data-linkedin="https://linkedin.com"><img src="https://placehold.co/200x200/e2e8f0/1e293b?text=DC" alt="Ir. Dito Eka Cahya" class="w-40 h-40 mx-auto rounded-full object-cover border-4 border-white/10 shadow-lg mb-4"><h4 class="text-xl font-bold text-white">Ir. Dito Eka Cahya</h4><p class="text-gray-400 text-sm">National AI Orchestrator</p></button>
+                    <button class="text-center scroll-animate-stagger interactive-card-member" data-name="Tommy Teja Adhiraja" data-title="Co-Founder of AICO Community & Zando | Content Creator with 626k folls on IG and 1.4M folls on TikTok" data-bio="Co-founder of the AICO Community and a prominent content creator with a massive following on social media." data-img="https://placehold.co/400x400/e2e8f0/1e293b?text=TA" data-linkedin="https://linkedin.com"><img src="https://placehold.co/200x200/e2e8f0/1e293b?text=TA" alt="Tommy Teja Adhiraja" class="w-40 h-40 mx-auto rounded-full object-cover border-4 border-white/10 shadow-lg mb-4"><h4 class="text-xl font-bold text-white">Tommy Teja Adhiraja</h4><p class="text-gray-400 text-sm">Co-Founder, AICO Community</p></button>
+                    <button class="text-center scroll-animate-stagger interactive-card-member" data-name="Reynaldi Francois" data-title="Co-Founder of AICO Community & Zando | Content Creator with 213k folls on IG and 1.1M folls on TikTok" data-bio="Co-founder of the AICO Community and an influential content creator shaping the public discourse on technology." data-img="https://placehold.co/400x400/e2e8f0/1e293b?text=RF" data-linkedin="https://linkedin.com"><img src="https://placehold.co/200x200/e2e8f0/1e293b?text=RF" alt="Reynaldi Francois" class="w-40 h-40 mx-auto rounded-full object-cover border-4 border-white/10 shadow-lg mb-4"><h4 class="text-xl font-bold text-white">Reynaldi Francois</h4><p class="text-gray-400 text-sm">Co-Founder, AICO Community</p></button>
+                    <button class="text-center scroll-animate-stagger interactive-card-member" data-name="Ariel Adhidevara" data-title="Creative Technologist | Master's Candidate at Harvard University | Cofounder of ThinkLab" data-bio="Creative Technologist and Master's Candidate at Harvard University, specializing in the intersection of art and technology." data-img="https://placehold.co/400x400/e2e8f0/1e293b?text=AA" data-linkedin="https://linkedin.com"><img src="https://placehold.co/200x200/e2e8f0/1e293b?text=AA" alt="Ariel Adhidevara" class="w-40 h-40 mx-auto rounded-full object-cover border-4 border-white/10 shadow-lg mb-4"><h4 class="text-xl font-bold text-white">Ariel Adhidevara</h4><p class="text-gray-400 text-sm">Creative Technologist, Harvard</p></button>
+                    <button class="text-center scroll-animate-stagger interactive-card-member" data-name="Hairi Abbas" data-title="Founder of AnakJustel.ai" data-bio="The innovative mind behind AnakJustel.ai, pushing the boundaries of AI applications in Indonesia." data-img="https://placehold.co/400x400/e2e8f0/1e293b?text=HA" data-linkedin="https://linkedin.com"><img src="https://placehold.co/200x200/e2e8f0/1e293b?text=HA" alt="Hairi Abbas" class="w-40 h-40 mx-auto rounded-full object-cover border-4 border-white/10 shadow-lg mb-4"><h4 class="text-xl font-bold text-white">Hairi Abbas</h4><p class="text-gray-400 text-sm">Founder, AnakJustel.ai</p></button>
+                    <button class="text-center scroll-animate-stagger interactive-card-member" data-name="Gusti Aju Dewi" data-title="AI Behavior Intelligence Strategist | Master's Candidate in Computer Science | Founder of Indonesian School of Graphology" data-bio="Pioneer in applying AI to understand human behavior and graphology, founder of the Indonesian School of Graphology." data-img="https://placehold.co/400x400/e2e8f0/1e293b?text=GA" data-linkedin="https://linkedin.com"><img src="https://placehold.co/200x200/e2e8f0/1e293b?text=GA" alt="Gusti Aju Dewi" class="w-40 h-40 mx-auto rounded-full object-cover border-4 border-white/10 shadow-lg mb-4"><h4 class="text-xl font-bold text-white">Gusti Aju Dewi</h4><p class="text-gray-400 text-sm">AI Behavior Strategist</p></button>
+                    <button class="text-center scroll-animate-stagger interactive-card-member" data-name="Brillian Fairiandi" data-title="Founder of ImajinAI | Content Creator with 87.8k followers on IG" data-bio="Founder of ImajinAI and a content creator dedicated to making AI accessible and understandable to a wider audience." data-img="https://placehold.co/400x400/e2e8f0/1e293b?text=BF" data-linkedin="https://linkedin.com"><img src="https://placehold.co/200x200/e2e8f0/1e293b?text=BF" alt="Brillian Fairiandi" class="w-40 h-40 mx-auto rounded-full object-cover border-4 border-white/10 shadow-lg mb-4"><h4 class="text-xl font-bold text-white">Brillian Fairiandi</h4><p class="text-gray-400 text-sm">Founder, ImajinAI</p></button>
+                    <button class="text-center scroll-animate-stagger interactive-card-member" data-name="Reza Erfit" data-title="AI & Tech Content Creator with 319k followers on IG and 106k followers on TikTok | Co-founder of FADI Institute" data-bio="An influential AI & Tech content creator and co-founder of the FADI Institute, educating hundreds of thousands online." data-img="https://placehold.co/400x400/e2e8f0/1e293b?text=RE" data-linkedin="https://linkedin.com"><img src="https://placehold.co/200x200/e2e8f0/1e293b?text=RE" alt="Reza Erfit" class="w-40 h-40 mx-auto rounded-full object-cover border-4 border-white/10 shadow-lg mb-4"><h4 class="text-xl font-bold text-white">Reza Erfit</h4><p class="text-gray-400 text-sm">AI & Tech Content Creator</p></button>
+                    <button class="text-center scroll-animate-stagger interactive-card-member" data-name="Theresa Tjandrawinata" data-title="Tech & Blockchain Content Creator with 150k folls on IG and 124k folls on TikTok | Founder of Oneiria/Minute Media" data-bio="A leading voice in the tech and blockchain space, with a strong presence as a content creator and media founder." data-img="https://placehold.co/400x400/e2e8f0/1e293b?text=TT" data-linkedin="https://linkedin.com"><img src="https://placehold.co/200x200/e2e8f0/1e293b?text=TT" alt="Theresa Tjandrawinata" class="w-40 h-40 mx-auto rounded-full object-cover border-4 border-white/10 shadow-lg mb-4"><h4 class="text-xl font-bold text-white">Theresa Tjandrawinata</h4><p class="text-gray-400 text-sm">Tech & Blockchain Creator</p></button>
+                    <button class="text-center scroll-animate-stagger interactive-card-member" data-name="Rizky Fahmi Hidayat" data-title="AI & Tech-Content Creator with 21.2k followers on IG and 39.6k followers on TikTok" data-bio="An engaging AI & Tech content creator, actively building a community of technology enthusiasts on social media." data-img="https://placehold.co/400x400/e2e8f0/1e293b?text=RH" data-linkedin="https://linkedin.com"><img src="https://placehold.co/200x200/e2e8f0/1e293b?text=RH" alt="Rizky Fahmi Hidayat" class="w-40 h-40 mx-auto rounded-full object-cover border-4 border-white/10 shadow-lg mb-4"><h4 class="text-xl font-bold text-white">Rizky Fahmi Hidayat</h4><p class="text-gray-400 text-sm">AI & Tech Content Creator</p></button>
+                    <button class="text-center scroll-animate-stagger interactive-card-member" data-name="Venandya Camelia" data-title="Cofounder of StorySage.io" data-bio="Co-founder of StorySage.io, leveraging AI to revolutionize storytelling and content creation." data-img="https://placehold.co/400x400/e2e8f0/1e293b?text=VC" data-linkedin="https://linkedin.com"><img src="https://placehold.co/200x200/e2e8f0/1e293b?text=VC" alt="Venandya Camelia" class="w-40 h-40 mx-auto rounded-full object-cover border-4 border-white/10 shadow-lg mb-4"><h4 class="text-xl font-bold text-white">Venandya Camelia</h4><p class="text-gray-400 text-sm">Cofounder, StorySage.io</p></button>
+                    <button class="text-center scroll-animate-stagger interactive-card-member" data-name="Verdyka Kurniawan" data-title="Cofounder & CEO of 2Sweet.AI | Ex VP at NorthStar Group" data-bio="Experienced executive and founder, now leading 2Sweet.AI after a tenure as VP at NorthStar Group." data-img="https://placehold.co/400x400/e2e8f0/1e293b?text=VK" data-linkedin="https://linkedin.com"><img src="https://placehold.co/200x200/e2e8f0/1e293b?text=VK" alt="Verdyka Kurniawan" class="w-40 h-40 mx-auto rounded-full object-cover border-4 border-white/10 shadow-lg mb-4"><h4 class="text-xl font-bold text-white">Verdyka Kurniawan</h4><p class="text-gray-400 text-sm">Cofounder & CEO, 2Sweet.AI</p></button>
+                    <button class="text-center scroll-animate-stagger interactive-card-member" data-name="Wafa Taftazani" data-title="General Manager of World Indonesia | Founder of Upbanx, VCGamers, & ModalRakyat | MBA at University of Cambridge 2016" data-bio="A serial entrepreneur and General Manager with an MBA from Cambridge, driving innovation in finance and gaming." data-img="https://placehold.co/400x400/e2e8f0/1e293b?text=WT" data-linkedin="https://linkedin.com"><img src="https://placehold.co/200x200/e2e8f0/1e293b?text=WT" alt="Wafa Taftazani" class="w-40 h-40 mx-auto rounded-full object-cover border-4 border-white/10 shadow-lg mb-4"><h4 class="text-xl font-bold text-white">Wafa Taftazani</h4><p class="text-gray-400 text-sm">General Manager, World ID</p></button>
+                    <button class="text-center scroll-animate-stagger interactive-card-member" data-name="Anjas Maradita" data-title="AI & Tech Content Creator with 312k followers on IG and 94.2k followers on TikTok | Founder of Pekerja.ai" data-bio="Founder of Pekerja.ai and a major content creator demystifying AI and technology for a large online audience." data-img="https://placehold.co/400x400/e2e8f0/1e293b?text=AM" data-linkedin="https://linkedin.com"><img src="https://placehold.co/200x200/e2e8f0/1e293b?text=AM" alt="Anjas Maradita" class="w-40 h-40 mx-auto rounded-full object-cover border-4 border-white/10 shadow-lg mb-4"><h4 class="text-xl font-bold text-white">Anjas Maradita</h4><p class="text-gray-400 text-sm">Founder, Pekerja.ai</p></button>
+                    <button class="text-center scroll-animate-stagger interactive-card-member" data-name="David Alifa Sunarna" data-title="Founder of websukaspor | UMMM Content Creator with 505k folls on IG & 455k folls on TikTok" data-bio="Founder and a prolific content creator with a massive following, engaging audiences across multiple platforms." data-img="https://placehold.co/400x400/e2e8f0/1e293b?text=DS" data-linkedin="https://linkedin.com"><img src="https://placehold.co/200x200/e2e8f0/1e293b?text=DS" alt="David Alifa Sunarna" class="w-40 h-40 mx-auto rounded-full object-cover border-4 border-white/10 shadow-lg mb-4"><h4 class="text-xl font-bold text-white">David Alifa Sunarna</h4><p class="text-gray-400 text-sm">Founder & Content Creator</p></button>
+                    <button class="text-center scroll-animate-stagger interactive-card-member" data-name="Ajazil Hawaris Sunny" data-title="AI & Tech-Content Creator with 2M followers on IG and 552k followers on TikTok" data-bio="A top-tier AI & Tech content creator with a staggering 2 million followers, a leading voice in the Indonesian tech scene." data-img="https://placehold.co/400x400/e2e8f0/1e293b?text=AS" data-linkedin="https://linkedin.com"><img src="https://placehold.co/200x200/e2e8f0/1e293b?text=AS" alt="Ajazil Hawaris Sunny" class="w-40 h-40 mx-auto rounded-full object-cover border-4 border-white/10 shadow-lg mb-4"><h4 class="text-xl font-bold text-white">Ajazil Hawaris Sunny</h4><p class="text-gray-400 text-sm">AI & Tech Content Creator</p></button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Application Form Section -->
+        <section id="join-us" class="py-20 md:py-24 content-section">
+            <div id="form-container" class="container mx-auto px-6 max-w-3xl">
+                <!-- Form Wrapper -->
+                <div id="form-wrapper">
+                    <div class="text-center mb-12"><h2 class="text-4xl md:text-5xl font-bold text-white">Become a Part of SATRIA</h2><p class="text-gray-400 mt-2 text-lg">Membership is selective and curated. Submit your application to be considered.</p></div>
+                    <form id="application-form" class="space-y-6">
+                        <div><label for="name" class="block text-sm font-medium text-gray-300 mb-2">Full Name</label><input type="text" name="name" id="name" required class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-red-500"></div>
+                        <div><label for="email" class="block text-sm font-medium text-gray-300 mb-2">Email Address</label><input type="email" name="email" id="email" required class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-red-500"></div>
+                        <div><label for="linkedin" class="block text-sm font-medium text-gray-300 mb-2">LinkedIn Profile URL</label><input type="url" name="linkedin" id="linkedin" required class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-red-500"></div>
+                         <div>
+                            <label for="reason" class="block text-sm font-medium text-gray-300 mb-2">Why do you want to join SATRIA?</label>
+                            <textarea name="reason" id="reason" rows="5" required class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-red-500" placeholder="Contoh: Dengan latar belakang saya di bidang machine learning, saya ingin berkontribusi dalam proyek riset SATRIA dan berkolaborasi dengan para ahli lainnya..."></textarea>
+                        </div>
+                        <div><button type="submit" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-4 rounded-lg transition duration-300">Submit Application</button></div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer id="contact" class="bg-black py-12 content-section"><div class="container mx-auto px-6 text-center"><h3 class="text-2xl font-bold text-white">forumsatria.ai | @forumsatria.ai</h3><p class="text-gray-500 mt-4">&copy; 2025 AI Forum SATRIA. All Rights Reserved.</p><p class="text-gray-600 mt-2 text-sm">A collaboration by <a href="#" class="font-semibold text-gray-500 hover:text-red-500">Visualaize.it</a> & <a href="#" class="font-semibold text-gray-500 hover:text-red-500">Automaize.it</a></p></div></footer>
+    
+    <!-- Modal Structure -->
+    <div id="modal" class="modal fixed inset-0 bg-black/80 flex items-center justify-center p-4 z-50 opacity-0 pointer-events-none">
+        <div class="modal-content glass-card rounded-2xl w-full max-w-lg p-8 relative transform scale-95">
+            <button id="modal-close" class="absolute top-4 right-4 text-gray-400 hover:text-white text-3xl leading-none">&times;</button>
+            <div id="modal-body" class="text-center">
+                <!-- Content will be injected by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPT -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Parallax Scroll for Hero
+            const heroContent = document.getElementById('hero-content');
+            window.addEventListener('scroll', () => {
+                const scrollValue = window.scrollY;
+                if (heroContent) {
+                   heroContent.style.transform = `translateY(${scrollValue * 0.5}px)`;
+                   heroContent.style.opacity = 1 - Math.min(scrollValue / (window.innerHeight * 0.6), 1);
+                }
+            });
+
+            // Particle Generation
+            const particleContainer = document.getElementById('particle-container');
+            if (particleContainer) {
+                const particleCount = 50;
+                for (let i = 0; i < particleCount; i++) {
+                    const particle = document.createElement('div');
+                    particle.classList.add('particle');
+                    particle.style.left = `${Math.random() * 100}%`;
+                    particle.style.top = `${Math.random() * 100 + 100}%`;
+                    particle.style.animationDuration = `${Math.random() * 30 + 20}s`;
+                    particle.style.animationDelay = `${Math.random() * 20}s`;
+                    particleContainer.appendChild(particle);
+                }
+            }
+
+            // On-Scroll Animation Logic
+            const simpleObserver = new IntersectionObserver(entries => {
+                entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('is-visible'); simpleObserver.unobserve(entry.target); } });
+            }, { threshold: 0.1 });
+            document.querySelectorAll('.scroll-animate').forEach(el => simpleObserver.observe(el));
+
+            const staggerObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const members = entry.target.querySelectorAll('.scroll-animate-stagger');
+                        members.forEach((member, index) => { member.style.transitionDelay = `${index * 80}ms`; member.classList.add('is-visible'); });
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            const memberGrid = document.getElementById('member-grid');
+            if (memberGrid) staggerObserver.observe(memberGrid);
+
+            // Modal Interactivity Logic
+            const modal = document.getElementById('modal');
+            const modalContent = modal.querySelector('.modal-content');
+            const modalBody = document.getElementById('modal-body');
+            const closeModalBtn = document.getElementById('modal-close');
+            
+            const interactiveCards = document.querySelectorAll('.interactive-card-solo, .interactive-card-member');
+            
+            interactiveCards.forEach(card => {
+                card.addEventListener('click', () => {
+                    const name = card.dataset.name;
+                    const title = card.dataset.title;
+                    const bio = card.dataset.bio;
+                    const img = card.dataset.img;
+                    const linkedin = card.dataset.linkedin;
+
+                    let contentHTML = '';
+
+                    if (img) { // Member card
+                        contentHTML = `
+                            <img src="${img}" alt="${name}" class="w-40 h-40 mx-auto rounded-full object-cover border-4 border-white/10 shadow-lg mb-4">
+                            <h3 class="text-2xl font-bold text-white">${name}</h3>
+                            <p class="text-red-400 text-sm mt-1">${title || ''}</p>
+                            <p class="text-gray-300 my-4 text-left">${bio}</p>
+                            <a href="${linkedin}" target="_blank" rel="noopener noreferrer" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-full transition-colors">View LinkedIn Profile</a>
+                        `;
+                    } else { // Visi, Misi, Advantage cards
+                        contentHTML = `
+                            <h3 class="text-3xl font-bold text-gradient-red mb-4">${name}</h3>
+                            <p class="text-gray-300 text-lg text-left">${bio.replace(/\. /g, '.<br><br>').replace(/(\d\.)/g, '<br><strong class="text-red-400">$1</strong>')}</p>
+                        `;
+                    }
+                    
+                    modalBody.innerHTML = contentHTML;
+                    modal.classList.remove('opacity-0', 'pointer-events-none');
+                    modalContent.classList.remove('scale-95');
+                });
+            });
+            function closeModal() {
+                modal.classList.add('opacity-0', 'pointer-events-none');
+                modalContent.classList.add('scale-95');
+            }
+            closeModalBtn.addEventListener('click', closeModal);
+            modal.addEventListener('click', (e) => { if (e.target === modal) { closeModal(); } });
+
+            // Application Form Submission
+            const form = document.getElementById('application-form');
+            const formContainer = document.getElementById('form-container');
+
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const userName = document.getElementById('name').value.split(' ')[0]; // Get first name
+
+                // TODO: Add actual form submission logic here (e.g., send to an API, n8n, etc.)
+                
+                // Animate form out
+                form.style.transition = 'opacity 0.5s ease-out';
+                form.style.opacity = '0';
+
+                setTimeout(() => {
+                    form.style.display = 'none';
+
+                    // Create and display thank you message
+                    const thankYouHTML = `
+                        <div class="thank-you-card glass-card p-8 md:p-12 rounded-2xl text-center">
+                            <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                                <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/>
+                                <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                            </svg>
+                            <h2 class="text-3xl font-bold text-white mt-4">Terima Kasih, ${userName}!</h2>
+                            <p class="text-gray-300 mt-4 max-w-md mx-auto">
+                                Aplikasi Anda telah kami terima. Karena SATRIA adalah forum yang terkurasi, tim kami akan meninjau setiap aplikasi dengan saksama. Kami akan menghubungi Anda melalui email dalam 7-14 hari kerja.
+                            </p>
+                            <div class="mt-8">
+                                <p class="text-gray-400 mb-4">Sambil menunggu, ikuti kami di media sosial:</p>
+                                <!-- Replace with actual social links -->
+                                <a href="#" class="text-red-400 hover:text-red-300 mx-2">Twitter/X</a>
+                                <span class="text-gray-600">&bull;</span>
+                                <a href="#" class="text-red-400 hover:text-red-300 mx-2">LinkedIn</a>
+                            </div>
+                        </div>
+                    `;
+                    formContainer.innerHTML = thankYouHTML;
+                }, 500); // Wait for fade out to complete
+            });
+        });
+    </script>
+</div>
+</body>
+</html>
