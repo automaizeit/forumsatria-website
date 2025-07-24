@@ -80,14 +80,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 modalBody.innerHTML = contentHTML;
                 modal.classList.remove('opacity-0', 'pointer-events-none');
-                modalContent.classList.remove('scale-95');
+                if(modalContent) modalContent.classList.remove('scale-95');
             });
         });
         function closeModal() {
             modal.classList.add('opacity-0', 'pointer-events-none');
-            modalContent.classList.add('scale-95');
+            if(modalContent) modalContent.classList.add('scale-95');
         }
-        closeModalBtn.addEventListener('click', closeModal);
+        if(closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
         modal.addEventListener('click', (e) => { if (e.target === modal) { closeModal(); } });
     }
 
@@ -124,7 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         </div>
                     </div>
                 `;
-                formContainer.innerHTML = thankYouHTML;
+                if(formContainer) formContainer.innerHTML = thankYouHTML;
             }, 500); 
         });
     }
