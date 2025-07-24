@@ -5,115 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Forum SATRIA</title>
     
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/style.css">
 
-    <style>
-        /* Custom styles */
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #0d1117;
-            color: #e6edf3;
-        }
-        .glass-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .interactive-card:hover .glass-card, .interactive-card-solo:hover {
-            transform: scale(1.03);
-            box-shadow: 0 0 25px rgba(239, 68, 68, 0.1);
-        }
-
-        .text-gradient-red {
-            background: linear-gradient(90deg, #f87171, #ef4444);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        /* Liquid Blob Background */
-        #background-wrapper {
-            position: relative;
-            isolation: isolate;
-            overflow-x: hidden;
-        }
-
-        .blob {
-            position: absolute;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(239, 68, 68, 0.4) 0%, rgba(239, 68, 68, 0) 70%);
-            filter: blur(100px);
-            z-index: -2;
-            animation: move-blob 30s infinite alternate;
-        }
-        .blob-1 { width: 400px; height: 400px; top: -150px; left: -150px; animation-duration: 40s; }
-        .blob-2 { width: 500px; height: 500px; bottom: -200px; right: -200px; animation-duration: 35s; animation-delay: -10s; }
-        .blob-3 { width: 300px; height: 300px; top: 50%; left: 50%; animation-duration: 25s; animation-delay: -5s; }
-        
-        @keyframes move-blob {
-            0% { transform: translate(0, 0) scale(1); }
-            50% { transform: translate(100px, -50px) scale(1.2); }
-            100% { transform: translate(-100px, 50px) scale(0.8); }
-        }
-
-
-        /* Parallax Scroll Effect */
-        #main-content { position: relative; z-index: 2; }
-        .content-section { background-color: #0d1117; }
-        
-        @media (min-width: 768px) {
-            #home {
-                height: 100vh;
-                position: sticky;
-                top: 0;
-                z-index: 1;
-            }
-            #main-content {
-                background-color: transparent; 
-            }
-        }
-
-
-        /* Animations */
-        @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-        .animate-slide-up { animation: slideUp 0.8s ease-out forwards; opacity: 0; }
-        .animation-delay-200 { animation-delay: 0.2s; }
-        .animation-delay-400 { animation-delay: 0.4s; }
-
-        .scroll-animate { opacity: 0; transition: opacity 1s ease-out, transform 1s ease-out; }
-        .scroll-animate.slide-in-from-left { transform: translateX(-50px); }
-        .scroll-animate.slide-in-from-right { transform: translateX(50px); }
-        .scroll-animate.is-visible { opacity: 1; transform: translateX(0); }
-
-        .scroll-animate-stagger { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
-        .scroll-animate-stagger.is-visible { opacity: 1; transform: translateY(0); }
-        
-        .title-glow { transition: text-shadow 0.3s ease-in-out; }
-        .title-glow:hover { text-shadow: 0 0 25px rgba(239, 68, 68, 0.5); }
-
-        #particle-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: -1; opacity: 0.75; }
-        @keyframes move-particles { from { transform: translateY(0); } to { transform: translateY(-100vh); } }
-        .particle { position: absolute; width: 2px; height: 2px; background: #fff; border-radius: 50%; animation: move-particles 50s linear infinite; }
-
-        .modal { transition: opacity 0.3s ease; }
-        .modal-content { transition: transform 0.3s ease; }
-        
-        .thank-you-card { animation: slideUp 0.8s ease-out forwards; opacity: 0; }
-        .checkmark__circle { stroke-dasharray: 166; stroke-dashoffset: 166; stroke-width: 2; stroke-miterlimit: 10; stroke: #7ac142; fill: none; animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards; }
-        .checkmark { width: 56px; height: 56px; border-radius: 50%; display: block; stroke-width: 2; stroke: #fff; stroke-miterlimit: 10; margin: 10% auto; box-shadow: inset 0px 0px 0px #7ac142; animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both; }
-        .checkmark__check { transform-origin: 50% 50%; stroke-dasharray: 48; stroke-dashoffset: 48; animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards; }
-        @keyframes stroke { 100% { stroke-dashoffset: 0; } }
-        @keyframes scale { 0%, 100% { transform: none; } 50% { transform: scale3d(1.1, 1.1, 1); } }
-        @keyframes fill { 100% { box-shadow: inset 0px 0px 0px 30px #7ac142; } }
-
-    </style>
 </head>
 <body>
 
@@ -123,9 +22,14 @@
 
     <header class="bg-black/50 backdrop-blur-lg sticky top-0 z-50">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="flex items-center" aria-label="AI Forum SATRIA Home"><img src="logo/Forum Satria AI Logo Extended 2X.png" alt="AI Forum SATRIA Logo" class="h-10 w-auto"></a>
-            <nav class="hidden md:flex items-center space-x-8"><a href="#about" class="text-gray-300 hover:text-white transition-colors">Why SATRIA?</a><a href="#members" class="text-gray-300 hover:text-white transition-colors">Members</a><a href="#join-us" class="text-gray-300 hover:text-white transition-colors">Apply</a></nav>
-            <a href="#join-us" class="hidden md:block bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-5 rounded-full transition-colors">Join Forum</a>
+            <a href="index.html" class="flex items-center" aria-label="AI Forum SATRIA Home"><img src="logo/Forum Satria AI Logo Extended 2X.png" alt="AI Forum SATRIA Logo" class="h-10 w-auto"></a>
+            <nav class="hidden md:flex items-center space-x-8">
+                <a href="index.html#about" class="text-gray-300 hover:text-white transition-colors">Why SATRIA?</a>
+                <a href="blog.html" class="text-gray-300 hover:text-white transition-colors">Insights</a>
+                <a href="events.html" class="text-gray-300 hover:text-white transition-colors">Activities</a>
+                <a href="index.html#members" class="text-gray-300 hover:text-white transition-colors">Members</a>
+            </nav>
+            <a href="index.html#join-us" class="hidden md:block bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-5 rounded-full transition-colors">Join Forum</a>
         </div>
     </header>
 
@@ -148,37 +52,97 @@
                 </div>
             </div>
         </section>
-
-        <section id="members" class="py-20 md:py-24 bg-black/20 content-section">
-             <div class="container mx-auto px-6 relative z-10">
-                <div class="text-center mb-16"><h2 class="text-4xl md:text-5xl font-bold text-white">Our Members</h2><p class="text-gray-400 mt-2 text-lg">The minds behind SATRIA.</p></div>
-                <div id="member-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-x-6 gap-y-12">
-                    <button class="text-center scroll-animate-stagger interactive-card-member" data-name="Wishnutama Kusubandio" data-title="Advisor & Initiator Forum SATRIA" data-bio="Former Minister of Tourism and Creative Economy, a visionary leader bridging creative industries with technology." data-img="assets/Wishnutama PP.png" data-linkedin="https://linkedin.com"><img src="assets/Wishnutama PP.png" alt="Wishnutama Kusubandio" class="w-40 h-40 mx-auto rounded-full object-cover border-4 border-white/10 shadow-lg mb-4"><h4 class="text-xl font-bold text-white">Wishnutama Kusubandio</h4><p class="text-gray-400 text-sm">Advisor & Initiator</p></button>
-                    <button class="text-center scroll-animate-stagger interactive-card-member" data-name="Dr. Prabu Revolusi, S.T, M.I.K" data-title="Advisor & Initiator Forum SATRIA" data-bio="A seasoned journalist and communication expert, advocating for ethical and impactful technology adoption in media." data-img="assets/Prabu PP.png" data-linkedin="https://linkedin.com"><img src="assets/Prabu PP.png" alt="Dr. Prabu Revolusi" class="w-40 h-40 mx-auto rounded-full object-cover border-4 border-white/10 shadow-lg mb-4"><h4 class="text-xl font-bold text-white">Dr. Prabu Revolusi</h4><p class="text-gray-400 text-sm">Advisor & Initiator</p></button>
-                    <button class="text-center scroll-animate-stagger interactive-card-member" data-name="Dito Eka Cahya, Ph.D" data-title="Co-Founder, Forumsatria.ai & Ariesgroup.ai" data-bio="Leading Indonesia's AI orchestration across education and industry as the Co-Founder of Forumsatria.ai and Ariesgroup.ai." data-img="assets/Dito PP.png" data-linkedin="https://linkedin.com"><img src="assets/Dito PP.png" alt="Dito Eka Cahya" class="w-40 h-40 mx-auto rounded-full object-cover border-4 border-white/10 shadow-lg mb-4"><h4 class="text-xl font-bold text-white">Dito Eka Cahya, Ph.D</h4><p class="text-gray-400 text-sm">Co-Founder, Forumsatria.ai</p></button>
-                    <button class="text-center scroll-animate-stagger interactive-card-member" data-name="Tommy Teja Adhiraja" data-title="Co-Founder of AICO Community & Zando" data-bio="Co-founder of the AICO Community and a prominent content creator with a massive following on social media." data-img="assets/Tommy PP.png" data-linkedin="https://linkedin.com"><img src="assets/Tommy PP.png" alt="Tommy Teja Adhiraja" class="w-40 h-40 mx-auto rounded-full object-cover border-4 border-white/10 shadow-lg mb-4"><h4 class="text-xl font-bold text-white">Tommy Teja Adhiraja</h4><p class="text-gray-400 text-sm">Co-Founder, AICO Community</p></button>
-                    <button class="text-center scroll-animate-stagger interactive-card-member" data-name="Reynaldi Francois" data-title="Co-Founder of AICO Community & Zando" data-bio="Co-founder of the AICO Community and an influential content creator shaping the public discourse on technology." data-img="assets/Rey PP.png" data-linkedin="https://linkedin.com"><img src="assets/Rey PP.png" alt="Reynaldi Francois" class="w-40 h-40 mx-auto rounded-full object-cover border-4 border-white/10 shadow-lg mb-4"><h4 class="text-xl font-bold text-white">Reynaldi Francois</h4><p class="text-gray-400 text-sm">Co-Founder, AICO Community</p></button>
-                    <button class="text-center scroll-animate-stagger interactive-card-member" data-name="Ariel Adhidevara" data-title="Creative Technologist | Master's Candidate at Harvard University" data-bio="Creative Technologist and Master's Candidate at Harvard University, specializing in the intersection of art and technology." data-img="assets/Ariel PP.png" data-linkedin="https://linkedin.com"><img src="assets/Ariel PP.png" alt="Ariel Adhidevara" class="w-40 h-40 mx-auto rounded-full object-cover border-4 border-white/10 shadow-lg mb-4"><h4 class="text-xl font-bold text-white">Ariel Adhidevara</h4><p class="text-gray-400 text-sm">Creative Technologist, Harvard</p></button>
-                    <button class="text-center scroll-animate-stagger interactive-card-member" data-name="Hairi Abbas" data-title="Founder of anakjaksel.ai" data-bio="The innovative mind behind anakjaksel.ai, pushing the boundaries of AI applications in Indonesia." data-img="assets/Hairi PP.png" data-linkedin="https://linkedin.com"><img src="assets/Hairi PP.png" alt="Hairi Abbas" class="w-40 h-40 mx-auto rounded-full object-cover border-4 border-white/10 shadow-lg mb-4"><h4 class="text-xl font-bold text-white">Hairi Abbas</h4><p class="text-gray-400 text-sm">Founder, AnakJustel.ai</p></button>
-                    <button class="text-center scroll-animate-stagger interactive-card-member" data-name="Gusti Aju Dewi" data-title="AI Behavior Intelligence Strategist" data-bio="Pioneer in applying AI to understand human behavior and graphology, founder of the Indonesian School of Graphology." data-img="assets/Gusti PP.png" data-linkedin="https://linkedin.com"><img src="assets/Gusti PP.png" alt="Gusti Aju Dewi" class="w-40 h-40 mx-auto rounded-full object-cover border-4 border-white/10 shadow-lg mb-4"><h4 class="text-xl font-bold text-white">Gusti Aju Dewi</h4><p class="text-gray-400 text-sm">AI Behavior Strategist</p></button>
-                    <button class="text-center scroll-animate-stagger interactive-card-member" data-name="Brillian Fairiandi" data-title="Founder of ImajinAI" data-bio="Founder of ImajinAI and a content creator dedicated to making AI accessible and understandable to a wider audience." data-img="assets/Brillian PP.png" data-linkedin="https://linkedin.com"><img src="assets/Brillian PP.png" alt="Brillian Fairiandi" class="w-40 h-40 mx-auto rounded-full object-cover border-4 border-white/10 shadow-lg mb-4"><h4 class="text-xl font-bold text-white">Brillian Fairiandi</h4><p class="text-gray-400 text-sm">Founder, ImajinAI</p></button>
-                    <button class="text-center scroll-animate-stagger interactive-card-member" data-name="Reza Erfit" data-title="AI & Tech Content Creator" data-bio="An influential AI & Tech content creator and co-founder of the PADI Institute, educating hundreds of thousands online." data-img="assets/Reza PP.png" data-linkedin="https://linkedin.com"><img src="assets/Reza PP.png" alt="Reza Erfit" class="w-40 h-40 mx-auto rounded-full object-cover border-4 border-white/10 shadow-lg mb-4"><h4 class="text-xl font-bold text-white">Reza Erfit</h4><p class="text-gray-400 text-sm">AI & Tech Content Creator</p></button>
-                    <button class="text-center scroll-animate-stagger interactive-card-member" data-name="Theresa Tjandrawinata" data-title="Tech & Blockchain Content Creator" data-bio="A leading voice in the tech and blockchain space, with a strong presence as a content creator and media founder." data-img="assets/Theresa PP.png" data-linkedin="https://linkedin.com"><img src="assets/Theresa PP.png" alt="Theresa Tjandrawinata" class="w-40 h-40 mx-auto rounded-full object-cover border-4 border-white/10 shadow-lg mb-4"><h4 class="text-xl font-bold text-white">Theresa Tjandrawinata</h4><p class="text-gray-400 text-sm">Tech & Blockchain Creator</p></button>
-                    <button class="text-center scroll-animate-stagger interactive-card-member" data-name="Rizky Fahmi Hidayat" data-title="AI & Tech Content Creator" data-bio="An engaging AI & Tech content creator, actively building a community of technology enthusiasts on social media." data-img="assets/Rizky PP.png" data-linkedin="https://linkedin.com"><img src="assets/Rizky PP.png" alt="Rizky Fahmi Hidayat" class="w-40 h-40 mx-auto rounded-full object-cover border-4 border-white/10 shadow-lg mb-4"><h4 class="text-xl font-bold text-white">Rizky Fahmi Hidayat</h4><p class="text-gray-400 text-sm">AI & Tech Content Creator</p></button>
-                    <button class="text-center scroll-animate-stagger interactive-card-member" data-name="Venandya Camelia" data-title="Cofounder of StorySage.io" data-bio="Co-founder of StorySage.io, leveraging AI to revolutionize storytelling and content creation." data-img="assets/Camelia PP.png" data-linkedin="https://linkedin.com"><img src="assets/Camellia PP.png" alt="Venandya Camelia" class="w-40 h-40 mx-auto rounded-full object-cover border-4 border-white/10 shadow-lg mb-4"><h4 class="text-xl font-bold text-white">Venandya Camelia</h4><p class="text-gray-400 text-sm">Cofounder, StorySage.io</p></button>
-                    <button class="text-center scroll-animate-stagger interactive-card-member" data-name="Verdyka Kurniawan" data-title="Cofounder & CEO of 2Sweet.AI" data-bio="Experienced executive and founder, now leading 2Sweet.AI after a tenure as VP at NorthStar Group." data-img="assets/Verdyka PP.png" data-linkedin="https://linkedin.com"><img src="assets/Verdyka PP.png" alt="Verdyka Kurniawan" class="w-40 h-40 mx-auto rounded-full object-cover border-4 border-white/10 shadow-lg mb-4"><h4 class="text-xl font-bold text-white">Verdyka Kurniawan</h4><p class="text-gray-400 text-sm">Cofounder & CEO, 2Sweet.AI</p></button>
-                    <button class="text-center scroll-animate-stagger interactive-card-member" data-name="Wafa Taftazani" data-title="General Manager of World Indonesia" data-bio="A serial entrepreneur and General Manager with an MBA from Cambridge, driving innovation in finance and gaming." data-img="assets/Wafa PP.png" data-linkedin="https://linkedin.com"><img src="assets/Wafa PP.png" alt="Wafa Taftazani" class="w-40 h-40 mx-auto rounded-full object-cover border-4 border-white/10 shadow-lg mb-4"><h4 class="text-xl font-bold text-white">Wafa Taftazani</h4><p class="text-gray-400 text-sm">General Manager, World ID</p></button>
-                    <button class="text-center scroll-animate-stagger interactive-card-member" data-name="Anjas Maradita" data-title="Founder of Pekerja.ai" data-bio="Founder of Pekerja.ai and a major content creator demystifying AI and technology for a large online audience." data-img="assets/Anjas PP.png" data-linkedin="https://linkedin.com"><img src="assets/Anjas PP.png" alt="Anjas Maradita" class="w-40 h-40 mx-auto rounded-full object-cover border-4 border-white/10 shadow-lg mb-4"><h4 class="text-xl font-bold text-white">Anjas Maradita</h4><p class="text-gray-400 text-sm">Founder, Pekerja.ai</p></button>
-                    <button class="text-center scroll-animate-stagger interactive-card-member" data-name="David Alifa Sunarna" data-title="Founder of websukaspor" data-bio="Founder and a prolific content creator with a massive following, engaging audiences across multiple platforms." data-img="assets/David PP.png" data-linkedin="https://linkedin.com"><img src="assets/David PP.png" alt="David Alifa Sunarna" class="w-40 h-40 mx-auto rounded-full object-cover border-4 border-white/10 shadow-lg mb-4"><h4 class="text-xl font-bold text-white">David Alifa Sunarna</h4><p class="text-gray-400 text-sm">Founder & Content Creator</p></button>
-                    <button class="text-center scroll-animate-stagger interactive-card-member" data-name="Ajazil Hawaris Sunny" data-title="AI & Tech Content Creator" data-bio="A top-tier AI & Tech content creator with a staggering 2 million followers, a leading voice in the Indonesian tech scene." data-img="assets/Azajil PP.png" data-linkedin="https://linkedin.com"><img src="assets/Azajil PP.png" alt="Ajazil Hawaris Sunny" class="w-40 h-40 mx-auto rounded-full object-cover border-4 border-white/10 shadow-lg mb-4"><h4 class="text-xl font-bold text-white">Ajazil Hawaris Sunny</h4><p class="text-gray-400 text-sm">AI & Tech Content Creator</p></button>
+        
+        <section id="insights" class="py-20 md:py-24 content-section">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-bold text-white">Recent Insights</h2>
+                    <p class="text-gray-400 mt-2 text-lg">Perspectives from our distinguished members.</p>
+                </div>
+                <div class="max-w-5xl mx-auto grid md:grid-cols-3 gap-8">
+                    <a href="article.html" class="interactive-card-solo block scroll-animate slide-in-from-left">
+                        <div class="glass-card rounded-2xl h-full flex flex-col overflow-hidden">
+                            <img src="assets/blog/ai-ethics.jpg" alt="AI Ethics" class="w-full h-48 object-cover">
+                            <div class="p-6 flex flex-col flex-grow">
+                                <h3 class="text-xl font-bold text-white">The Ethical Dilemmas of Generative AI</h3>
+                                <p class="text-gray-400 mt-2 flex-grow">A deep dive into the ethical considerations we must address as AI becomes more prevalent.</p>
+                                <div class="mt-4 text-sm text-gray-500">By Gusti Aju Dewi</div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="article.html" class="interactive-card-solo block scroll-animate slide-in-from-left" style="animation-delay: 0.2s;">
+                        <div class="glass-card rounded-2xl h-full flex flex-col overflow-hidden">
+                            <img src="assets/blog/ai-economy.jpg" alt="AI and Economy" class="w-full h-48 object-cover">
+                            <div class="p-6 flex flex-col flex-grow">
+                                <h3 class="text-xl font-bold text-white">How AI Will Shape Indonesia's Digital Economy</h3>
+                                <p class="text-gray-400 mt-2 flex-grow">Exploring the opportunities and challenges for businesses in the coming age of AI.</p>
+                                <div class="mt-4 text-sm text-gray-500">By Wafa Taftazani</div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="article.html" class="interactive-card-solo block scroll-animate slide-in-from-left" style="animation-delay: 0.4s;">
+                        <div class="glass-card rounded-2xl h-full flex flex-col overflow-hidden">
+                            <img src="assets/blog/ai-creative.jpg" alt="AI and Creativity" class="w-full h-48 object-cover">
+                            <div class="p-6 flex flex-col flex-grow">
+                                <h3 class="text-xl font-bold text-white">Creativity Reimagined: Partnering with AI</h3>
+                                <p class="text-gray-400 mt-2 flex-grow">Leveraging AI as a powerful collaborator, not a replacement, for creative professionals.</p>
+                                <div class="mt-4 text-sm text-gray-500">By Brillian Fairiandi</div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="text-center mt-12">
+                    <a href="blog.html" class="text-red-400 font-semibold hover:text-red-300 transition-colors">Read All Insights &rarr;</a>
                 </div>
             </div>
         </section>
 
-        <!-- Application Form Section -->
+        <section id="activities" class="py-20 md:py-24 bg-black/20 content-section">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-bold text-white">Recent Activities</h2>
+                    <p class="text-gray-400 mt-2 text-lg">A glimpse into our ongoing discussions and initiatives.</p>
+                </div>
+                <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-8">
+                    <div class="glass-card rounded-2xl p-8 flex space-x-6 items-start scroll-animate slide-in-from-left">
+                        <div class="text-center flex-shrink-0">
+                            <p class="text-red-400 text-lg font-semibold">AUG</p>
+                            <p class="text-4xl font-bold text-white">15</p>
+                        </div>
+                        <div>
+                            <span class="text-xs uppercase tracking-widest text-red-400 bg-red-500/10 px-2 py-1 rounded-full">UPCOMING</span>
+                            <h3 class="text-2xl font-bold text-white mt-3">Workshop: AI in Fintech</h3>
+                            <p class="text-gray-400 mt-2">An internal workshop exploring the latest AI applications in the financial technology sector.</p>
+                        </div>
+                    </div>
+                     <div class="glass-card rounded-2xl p-8 flex space-x-6 items-start scroll-animate slide-in-from-right">
+                        <div class="text-center flex-shrink-0">
+                            <p class="text-gray-500 text-lg font-semibold">JUL</p>
+                            <p class="text-4xl font-bold text-white">22</p>
+                        </div>
+                        <div>
+                            <span class="text-xs uppercase tracking-widest text-gray-400 bg-gray-500/10 px-2 py-1 rounded-full">COMPLETED</span>
+                            <h3 class="text-2xl font-bold text-white mt-3">Roundtable: AI Policy & Ethics</h3>
+                            <p class="text-gray-400 mt-2">A closed-door discussion with policymakers on shaping a responsible AI framework.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center mt-12">
+                    <a href="events.html" class="text-red-400 font-semibold hover:text-red-300 transition-colors">View All Activities &rarr;</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="members" class="py-20 md:py-24 content-section">
+             <div class="container mx-auto px-6 relative z-10">
+                <div class="text-center mb-16"><h2 class="text-4xl md:text-5xl font-bold text-white">The People Behind SATRIA</h2><p class="text-gray-400 mt-2 text-lg">Meet the core team driving the initiative.</p></div>
+                <div id="member-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-x-6 gap-y-12">
+                </div>
+            </div>
+        </section>
+
         <section id="join-us" class="py-20 md:py-24 content-section">
             <div id="form-container" class="container mx-auto px-6 max-w-3xl">
-                <!-- Form Wrapper -->
                 <div id="form-wrapper">
                     <div class="text-center mb-12"><h2 class="text-4xl md:text-5xl font-bold text-white">Become a Part of SATRIA</h2><p class="text-gray-400 mt-2 text-lg">Membership is selective and curated. Submit your application to be considered.</p></div>
                     <form id="application-form" class="space-y-6">
@@ -198,146 +162,14 @@
 
     <footer id="contact" class="bg-black py-12 content-section"><div class="container mx-auto px-6 text-center"><h3 class="text-2xl font-bold text-white">forumsatria.ai | @forumsatria.ai</h3><p class="text-gray-500 mt-4">&copy; 2025 AI Forum SATRIA. All Rights Reserved.</p><p class="text-gray-600 mt-2 text-sm">A collaboration by <a href="#" class="font-semibold text-gray-500 hover:text-red-500">Visualaize.it</a> & <a href="#" class="font-semibold text-gray-500 hover:text-red-500">Automaize.it</a></p></div></footer>
     
-    <!-- Modal Structure -->
     <div id="modal" class="modal fixed inset-0 bg-black/80 flex items-center justify-center p-4 z-50 opacity-0 pointer-events-none">
         <div class="modal-content glass-card rounded-2xl w-full max-w-lg p-8 relative transform scale-95">
             <button id="modal-close" class="absolute top-4 right-4 text-gray-400 hover:text-white text-3xl leading-none">&times;</button>
-            <div id="modal-body" class="text-center">
-                <!-- Content will be injected by JavaScript -->
-            </div>
+            <div id="modal-body" class="text-center"></div>
         </div>
     </div>
 
-    <!-- SCRIPT -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Parallax Scroll for Hero
-            const heroContent = document.getElementById('hero-content');
-            if (window.innerWidth >= 768) {
-                window.addEventListener('scroll', () => {
-                    const scrollValue = window.scrollY;
-                    if (heroContent) {
-                       heroContent.style.transform = `translateY(${scrollValue * 0.5}px)`;
-                       heroContent.style.opacity = 1 - Math.min(scrollValue / (window.innerHeight * 0.6), 1);
-                    }
-                });
-            }
-
-            // Particle Generation
-            const particleContainer = document.getElementById('particle-container');
-            if (particleContainer) {
-                const particleCount = 50;
-                for (let i = 0; i < particleCount; i++) {
-                    const particle = document.createElement('div');
-                    particle.classList.add('particle');
-                    particle.style.left = `${Math.random() * 100}%`;
-                    particle.style.top = `${Math.random() * 100 + 100}%`;
-                    particle.style.animationDuration = `${Math.random() * 30 + 20}s`;
-                    particle.style.animationDelay = `${Math.random() * 20}s`;
-                    particleContainer.appendChild(particle);
-                }
-            }
-
-            // On-Scroll Animation Logic
-            const simpleObserver = new IntersectionObserver(entries => {
-                entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('is-visible'); simpleObserver.unobserve(entry.target); } });
-            }, { threshold: 0.1 });
-            document.querySelectorAll('.scroll-animate').forEach(el => simpleObserver.observe(el));
-
-            const staggerObserver = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const members = entry.target.querySelectorAll('.scroll-animate-stagger');
-                        members.forEach((member, index) => { member.style.transitionDelay = `${index * 80}ms`; member.classList.add('is-visible'); });
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.1 });
-            const memberGrid = document.getElementById('member-grid');
-            if (memberGrid) staggerObserver.observe(memberGrid);
-
-            // Modal Interactivity Logic
-            const modal = document.getElementById('modal');
-            const modalContent = modal.querySelector('.modal-content');
-            const modalBody = document.getElementById('modal-body');
-            const closeModalBtn = document.getElementById('modal-close');
-            
-            const interactiveCards = document.querySelectorAll('.interactive-card-solo, .interactive-card-member');
-            
-            interactiveCards.forEach(card => {
-                card.addEventListener('click', () => {
-                    const name = card.dataset.name;
-                    const title = card.dataset.title;
-                    const bio = card.dataset.bio;
-                    const img = card.dataset.img;
-                    const linkedin = card.dataset.linkedin;
-
-                    let contentHTML = '';
-
-                    if (img) { // Member card
-                        contentHTML = `
-                            <img src="${img}" alt="${name}" class="w-40 h-40 mx-auto rounded-full object-cover border-4 border-white/10 shadow-lg mb-4">
-                            <h3 class="text-2xl font-bold text-white">${name}</h3>
-                            <p class="text-red-400 text-sm mt-1">${title || ''}</p>
-                            <p class="text-gray-300 my-4 text-left">${bio}</p>
-                            <a href="${linkedin}" target="_blank" rel="noopener noreferrer" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-full transition-colors">View LinkedIn Profile</a>
-                        `;
-                    } else { // Visi, Misi, Advantage cards
-                        contentHTML = `
-                            <h3 class="text-3xl font-bold text-gradient-red mb-4">${name}</h3>
-                            <p class="text-gray-300 text-lg text-left">${bio.replace(/\. /g, '.<br><br>').replace(/(\d\.)/g, '<br><strong class="text-red-400">$1</strong>')}</p>
-                        `;
-                    }
-                    
-                    modalBody.innerHTML = contentHTML;
-                    modal.classList.remove('opacity-0', 'pointer-events-none');
-                    modalContent.classList.remove('scale-95');
-                });
-            });
-            function closeModal() {
-                modal.classList.add('opacity-0', 'pointer-events-none');
-                modalContent.classList.add('scale-95');
-            }
-            closeModalBtn.addEventListener('click', closeModal);
-            modal.addEventListener('click', (e) => { if (e.target === modal) { closeModal(); } });
-
-            // Application Form Submission
-            const form = document.getElementById('application-form');
-            const formContainer = document.getElementById('form-container');
-
-            form.addEventListener('submit', function(e) {
-                e.preventDefault();
-                const userName = document.getElementById('name').value.split(' ')[0]; 
-
-                form.style.transition = 'opacity 0.5s ease-out';
-                form.style.opacity = '0';
-
-                setTimeout(() => {
-                    form.style.display = 'none';
-
-                    const thankYouHTML = `
-                        <div class="thank-you-card glass-card p-8 md:p-12 rounded-2xl text-center">
-                            <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
-                                <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/>
-                                <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
-                            </svg>
-                            <h2 class="text-3xl font-bold text-white mt-4">Terima Kasih, ${userName}!</h2>
-                            <p class="text-gray-300 mt-4 max-w-md mx-auto">
-                                Aplikasi Anda telah kami terima. Karena SATRIA adalah forum yang terkurasi, tim kami akan meninjau setiap aplikasi dengan saksama. Kami akan menghubungi Anda melalui email dalam 7-14 hari kerja.
-                            </p>
-                            <div class="mt-8">
-                                <p class="text-gray-400 mb-4">Sambil menunggu, ikuti kami di media sosial:</p>
-                                <a href="#" class="text-red-400 hover:text-red-300 mx-2">Twitter/X</a>
-                                <span class="text-gray-600">&bull;</span>
-                                <a href="#" class="text-red-400 hover:text-red-300 mx-2">LinkedIn</a>
-                            </div>
-                        </div>
-                    `;
-                    formContainer.innerHTML = thankYouHTML;
-                }, 500); 
-            });
-        });
-    </script>
 </div>
+    <script src="js/script.js"></script>
 </body>
 </html>

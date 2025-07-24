@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insights - AI Forum SATRIA</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="background-wrapper">
+    <div class="blob-container"><div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div></div>
+    <div id="particle-container"></div>
+
+    <header class="bg-black/50 backdrop-blur-lg sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="flex items-center" aria-label="AI Forum SATRIA Home"><img src="logo/Forum Satria AI Logo Extended 2X.png" alt="AI Forum SATRIA Logo" class="h-10 w-auto"></a>
+            <nav class="hidden md:flex items-center space-x-8"><a href="index.html#about" class="text-gray-300 hover:text-white transition-colors">Why SATRIA?</a><a href="blog.html" class="text-red-400 font-bold">Insights</a><a href="events.html" class="text-gray-300 hover:text-white transition-colors">Activities</a><a href="index.html#members" class="text-gray-300 hover:text-white transition-colors">Members</a></nav>
+            <a href="index.html#join-us" class="hidden md:block bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-5 rounded-full transition-colors">Join Forum</a>
+        </div>
+    </header>
+
+    <main class="content-section">
+        <section class="py-20 md:py-28">
+            <div class="container mx-auto px-6">
+                <div class="text-center max-w-3xl mx-auto">
+                    <h1 class="text-5xl md:text-7xl font-bold text-white">SATRIA Insights</h1>
+                    <p class="text-xl text-gray-400 mt-4">Perspectives on AI, technology, and Indonesia's digital future from our distinguished members.</p>
+                </div>
+
+                <div class="mt-20 max-w-5xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <a href="article.html" class="interactive-card-solo block">
+                        <div class="glass-card rounded-2xl h-full flex flex-col overflow-hidden">
+                            <img src="assets/blog/ai-ethics.jpg" alt="AI Ethics" class="w-full h-48 object-cover">
+                            <div class="p-6 flex flex-col flex-grow">
+                                <h3 class="text-xl font-bold text-white">The Ethical Dilemmas of Generative AI in Indonesia</h3>
+                                <p class="text-gray-400 mt-2 flex-grow">A deep dive into the ethical considerations we must address as AI becomes more prevalent in our society.</p>
+                                <div class="mt-4 text-sm text-gray-500">By Gusti Aju Dewi</div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="article.html" class="interactive-card-solo block">
+                        <div class="glass-card rounded-2xl h-full flex flex-col overflow-hidden">
+                            <img src="assets/blog/ai-economy.jpg" alt="AI and Economy" class="w-full h-48 object-cover">
+                            <div class="p-6 flex flex-col flex-grow">
+                                <h3 class="text-xl font-bold text-white">How AI Will Shape Indonesia's Digital Economy</h3>
+                                <p class="text-gray-400 mt-2 flex-grow">Exploring the opportunities and challenges for businesses and the workforce in the coming age of AI.</p>
+                                <div class="mt-4 text-sm text-gray-500">By Wafa Taftazani</div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="article.html" class="interactive-card-solo block">
+                        <div class="glass-card rounded-2xl h-full flex flex-col overflow-hidden">
+                            <img src="assets/blog/ai-creative.jpg" alt="AI and Creativity" class="w-full h-48 object-cover">
+                            <div class="p-6 flex flex-col flex-grow">
+                                <h3 class="text-xl font-bold text-white">Creativity Reimagined: Partnering with AI</h3>
+                                <p class="text-gray-400 mt-2 flex-grow">A look at how creative professionals can leverage AI as a powerful collaborator, not a replacement.</p>
+                                <div class="mt-4 text-sm text-gray-500">By Brillian Fairiandi</div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contact" class="bg-black py-12 content-section"><div class="container mx-auto px-6 text-center"><h3 class="text-2xl font-bold text-white">forumsatria.ai | @forumsatria.ai</h3><p class="text-gray-500 mt-4">&copy; 2025 AI Forum SATRIA. All Rights Reserved.</p><p class="text-gray-600 mt-2 text-sm">A collaboration by <a href="#" class="font-semibold text-gray-500 hover:text-red-500">Visualaize.it</a> & <a href="#" class="font-semibold text-gray-500 hover:text-red-500">Automaize.it</a></p></div></footer>
+    
+    <script src="js/script.js"></script>
+</div>
+</body>
+</html>
