@@ -26,23 +26,40 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // On-Scroll Animation Logic
+    // On-Scroll Animation Logic (Simple)
     const simpleObserver = new IntersectionObserver(entries => {
         entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('is-visible'); simpleObserver.unobserve(entry.target); } });
     }, { threshold: 0.1 });
     document.querySelectorAll('.scroll-animate').forEach(el => simpleObserver.observe(el));
 
+    // ================================================================= //
+    // ON-SCROLL STAGGER ANIMATION LOGIC (REVISED FOR MULTIPLE GROUPS)
+    // ================================================================= //
     const staggerObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
+                // Cari elemen stagger HANYA di dalam container yang terlihat
                 const members = entry.target.querySelectorAll('.scroll-animate-stagger');
-                members.forEach((member, index) => { member.style.transitionDelay = `${index * 80}ms`; member.classList.add('is-visible'); });
+                members.forEach((member, index) => {
+                    // Terapkan delay berdasarkan urutan di dalam grupnya masing-masing
+                    member.style.transitionDelay = `${index * 80}ms`;
+                    member.classList.add('is-visible');
+                });
+                // Berhenti mengamati container ini setelah animasinya jalan
                 observer.unobserve(entry.target);
             }
         });
     }, { threshold: 0.1 });
-    const memberGrid = document.getElementById('member-grid');
-    if (memberGrid) staggerObserver.observe(memberGrid);
+    
+    // Alih-alih mencari satu ID, kita cari semua container dengan kelas '.stagger-container'
+    const staggerContainers = document.querySelectorAll('.stagger-container');
+    staggerContainers.forEach(container => {
+        staggerObserver.observe(container);
+    });
+    // ================================================================= //
+    // END OF REVISED LOGIC
+    // ================================================================= //
+
 
     // Modal Interactivity Logic
     const modal = document.getElementById('modal');

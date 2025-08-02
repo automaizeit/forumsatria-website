@@ -8,7 +8,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -19,7 +18,12 @@
     <header class="bg-black/50 backdrop-blur-lg sticky top-0 z-50">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
             <a href="index.html" class="flex items-center" aria-label="AI Forum SATRIA Home"><img src="logo/Forum Satria AI Logo Extended 2X.png" alt="AI Forum SATRIA Logo" class="h-10 w-auto"></a>
-            <nav class="hidden md:flex items-center space-x-8"><a href="index.html#about" class="text-gray-300 hover:text-white transition-colors">Why SATRIA?</a><a href="blog.html" class="text-red-400 font-bold">Insights</a><a href="events.html" class="text-gray-300 hover:text-white transition-colors">Activities</a><a href="index.html#members" class="text-gray-300 hover:text-white transition-colors">Members</a></nav>
+            <nav class="hidden md:flex items-center space-x-8">
+                <a href="index.html#about" class="text-gray-300 hover:text-white transition-colors">Why SATRIA?</a>
+                <a href="blog.html" class="text-red-400 font-bold">Insights</a>
+                <a href="events.html" class="text-gray-300 hover:text-white transition-colors">Activities</a>
+                <a href="index.html#members" class="text-gray-300 hover:text-white transition-colors">Members</a>
+            </nav>
             <a href="index.html#join-us" class="hidden md:block bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-5 rounded-full transition-colors">Join Forum</a>
         </div>
     </header>
@@ -27,43 +31,36 @@
     <main class="content-section">
         <section class="py-20 md:py-28">
             <div class="container mx-auto px-6">
-                <div class="text-center max-w-3xl mx-auto">
+                <div class="text-center max-w-3xl mx-auto animate-slide-up">
                     <h1 class="text-5xl md:text-7xl font-bold text-white">SATRIA Insights</h1>
                     <p class="text-xl text-gray-400 mt-4">Perspectives on AI, technology, and Indonesia's digital future from our distinguished members.</p>
                 </div>
 
-                <div class="mt-20 max-w-5xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <a href="article.html" class="interactive-card-solo block">
+                <div class="mt-20 max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+                    
+                    <a href="article/article 1 by hairi abass gso harvard/article-gso-critique.html" class="interactive-card-solo block scroll-animate slide-in-from-left">
                         <div class="glass-card rounded-2xl h-full flex flex-col overflow-hidden">
-                            <img src="assets/blog/ai-ethics.jpg" alt="AI Ethics" class="w-full h-48 object-cover">
+                            <img src="article/article 1 by hairi abass gso harvard/Gemini Generated Image (1).png" alt="Abstract representation of AI and marketing" class="w-full h-48 object-cover">
                             <div class="p-6 flex flex-col flex-grow">
-                                <h3 class="text-xl font-bold text-white">The Ethical Dilemmas of Generative AI in Indonesia</h3>
-                                <p class="text-gray-400 mt-2 flex-grow">A deep dive into the ethical considerations we must address as AI becomes more prevalent in our society.</p>
-                                <div class="mt-4 text-sm text-gray-500">By Gusti Aju Dewi</div>
+                                <h3 class="text-xl font-bold text-white">Generative Search Optimization: Inovasi Marketing Harvard atau Daur Ulang Trik AI Lama?</h3>
+                                <p class="text-gray-400 mt-2 flex-grow">Membedah istilah "Generative Search Optimization" dari HBS dan mengapa ini adalah "trik lama" bagi praktisi AI.</p>
+                                <div class="mt-4 text-sm text-gray-500">By Hairi Abass</div>
                             </div>
                         </div>
                     </a>
-                    <a href="article.html" class="interactive-card-solo block">
+
+                    <a href="article/article 2 by hairi abass human vs ai harvard/article-human-vs-ai.html" class="interactive-card-solo block scroll-animate slide-in-from-left" style="animation-delay: 0.2s;">
                         <div class="glass-card rounded-2xl h-full flex flex-col overflow-hidden">
-                            <img src="assets/blog/ai-economy.jpg" alt="AI and Economy" class="w-full h-48 object-cover">
+                            <img src="article/article 2 by hairi abass human vs ai harvard/Gemini Generated Image (1).png" alt="Conceptual image of human and AI comparison" class="w-full h-48 object-cover">
                             <div class="p-6 flex flex-col flex-grow">
-                                <h3 class="text-xl font-bold text-white">How AI Will Shape Indonesia's Digital Economy</h3>
-                                <p class="text-gray-400 mt-2 flex-grow">Exploring the opportunities and challenges for businesses and the workforce in the coming age of AI.</p>
-                                <div class="mt-4 text-sm text-gray-500">By Wafa Taftazani</div>
+                                <h3 class="text-xl font-bold text-white">Manusia vs AI Jadul: Kenapa Riset HBS Ketinggalan Zaman?</h3>
+                                <p class="text-gray-400 mt-2 flex-grow">Sebuah tinjauan kritis terhadap perbandingan kemampuan adaptasi manusia dengan AI yang tidak sepadan.</p>
+                                <div class="mt-4 text-sm text-gray-500">By Hairi Abass</div>
                             </div>
                         </div>
                     </a>
-                    <a href="article.html" class="interactive-card-solo block">
-                        <div class="glass-card rounded-2xl h-full flex flex-col overflow-hidden">
-                            <img src="assets/blog/ai-creative.jpg" alt="AI and Creativity" class="w-full h-48 object-cover">
-                            <div class="p-6 flex flex-col flex-grow">
-                                <h3 class="text-xl font-bold text-white">Creativity Reimagined: Partnering with AI</h3>
-                                <p class="text-gray-400 mt-2 flex-grow">A look at how creative professionals can leverage AI as a powerful collaborator, not a replacement.</p>
-                                <div class="mt-4 text-sm text-gray-500">By Brillian Fairiandi</div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
+                    
+                    </div>
             </div>
         </section>
     </main>

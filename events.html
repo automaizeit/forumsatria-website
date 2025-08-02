@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activities - AI Forum SATRIA</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+
+<div id="background-wrapper">
+    <div class="blob-container"><div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div></div>
+    <div id="particle-container"></div>
+
+    <header class="bg-black/50 backdrop-blur-lg sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="flex items-center" aria-label="AI Forum SATRIA Home"><img src="logo/Forum Satria AI Logo Extended 2X.png" alt="AI Forum SATRIA Logo" class="h-10 w-auto"></a>
+            <nav class="hidden md:flex items-center space-x-8">
+                <a href="index.html#about" class="text-gray-300 hover:text-white transition-colors">Why SATRIA?</a>
+                <a href="blog.html" class="text-gray-300 hover:text-white transition-colors">Insights</a>
+                <a href="events.html" class="text-red-400 font-bold">Activities</a>
+                <a href="index.html#members" class="text-gray-300 hover:text-white transition-colors">Members</a>
+            </nav>
+            <a href="index.html#join-us" class="hidden md:block bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-5 rounded-full transition-colors">Join Forum</a>
+        </div>
+    </header>
+
+    <main class="content-section">
+        <section class="py-32 md:py-48 text-center">
+            <div class="container mx-auto px-6">
+                <h1 class="text-4xl md:text-6xl font-bold text-white leading-tight animate-slide-up">Coming Soon</h1>
+                <p class="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mt-4 animate-slide-up animation-delay-200">
+                    We are currently compiling our records of past activities and initiatives. <br>Please check back soon to see our journey.
+                </p>
+                <div class="mt-8 animate-slide-up animation-delay-400">
+                    <a href="index.html" class="bg-red-600 hover:bg-red-700 text-white font-semibold py-3 px-8 rounded-full transition-colors inline-block">
+                        &larr; Back to Home
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contact" class="bg-black py-12 content-section"><div class="container mx-auto px-6 text-center"><h3 class="text-2xl font-bold text-white">forumsatria.ai | @forumsatria.ai</h3><p class="text-gray-500 mt-4">&copy; 2025 AI Forum SATRIA. All Rights Reserved.</p><p class="text-gray-600 mt-2 text-sm">A collaboration by <a href="#" class="font-semibold text-gray-500 hover:text-red-500">Visualaize.it</a> & <a href="#" class="font-semibold text-gray-500 hover:text-red-500">Automaize.it</a></p></div></footer>
+    
+    <div id="modal" class="modal fixed inset-0 bg-black/80 flex items-center justify-center p-4 z-50 opacity-0 pointer-events-none">
+        <div class="modal-content glass-card rounded-2xl w-full max-w-lg p-8 relative transform scale-95">
+            <button id="modal-close" class="absolute top-4 right-4 text-gray-400 hover:text-white text-3xl leading-none">&times;</button>
+            <div id="modal-body" class="text-center"></div>
+        </div>
+    </div>
+
+</div>
+    <script src="js/script.js"></script>
+</body>
+</html>
